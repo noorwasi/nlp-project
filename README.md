@@ -18,12 +18,5 @@ The project is divided into two phases:
 ## | Member 2 | @username |
 ## | Member 3 | @username |
 
----
-
-## Dataset
-- **Name:** IMDb Dataset of 50k Movie Reviews
-- **Source:** [Kaggle](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
-- **Format:** CSV with two columns — `review` and `sentiment`
-- **Labels:** `positive` / `negative`
-- **Subset used for baseline:** 2000–5000 samples
+--
 
