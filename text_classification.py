@@ -17,7 +17,7 @@ total_words  = {"spam": 0, "normal": 0}
 class_counts = {"spam": 0, "normal": 0}
 word_counts  = {"spam": {}, "normal": {}}
 
-# fill the dictionaries
+
 for text, label in dataset:
     tokens = tokenize(text)
 
