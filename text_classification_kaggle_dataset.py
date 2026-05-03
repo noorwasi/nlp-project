@@ -2,7 +2,6 @@
 import csv
 import random
 
-# =========================================
 # STEP 1 - Load a small sample of the data
 # =========================================
 
@@ -21,16 +20,12 @@ def load_imdb(filepath, sample_size=50, seed=42):
     random.shuffle(data)
     return data[:sample_size]
 
-
-# =========================================
 # STEP 2 - Tokenizer
 # =========================================
 
 def tokenize(text):
     return text.lower().split()
 
-
-# =========================================
 # STEP 3 - Train Naive Bayes
 # =========================================
 
@@ -51,7 +46,6 @@ def train(dataset):
     return class_counts, total_words, word_counts
 
 
-# =========================================
 # STEP 4 - Score and Predict
 # =========================================
 
@@ -80,8 +74,6 @@ def predict(text, class_counts, total_words, word_counts, vocab_size):
     else:
         return "negative"
 
-
-# =========================================
 # STEP 5 - Evaluator (your code from before)
 # =========================================
 
@@ -128,17 +120,15 @@ class Evaluator:
             return 0.0
         return (2 * p * r) / (p + r)
 
-
-# =========================================
 # STEP 6 - Run Everything
 # =========================================
 
 # --- load data ---
-dataset = load_imdb("imdb_movie_reviews.csv", sample_size=50)
+dataset = load_imdb("imdb_movie_reviews.csv", sample_size=500)
 
-# --- split into train (40) and test (10) ---
-train_data = dataset[:40]
-test_data  = dataset[40:]
+# --- split into train (80) and test (20) rule ---
+train_data = dataset[:400]
+test_data  = dataset[400:]
 
 # --- train ---
 class_counts, total_words, word_counts = train(train_data)
@@ -171,7 +161,7 @@ for text, true_label in test_data:
 ev = Evaluator()
 
 TP, TN, FP, FN = ev.confusion_matrix(y_true, y_pred)
-print("Results on IMDb sample")
+print("\n Results on IMDb sample")
 print("======================")
 print(f"TP={TP}, TN={TN}, FP={FP}, FN={FN}")
 print(f"Accuracy  : {ev.accuracy(y_true, y_pred):.2f}")
@@ -180,10 +170,16 @@ print(f"Recall    : {ev.recall(y_true, y_pred):.2f}")
 print(f"F1 Score  : {ev.f1_score(y_true, y_pred):.2f}")
 
 # --- show predictions on test reviews ---
-print()
-print("Sample Predictions")
+print("\n Sample Predictions")
 print("======================")
 for text, true_label in test_data:
     predicted = predict(text, class_counts, total_words, word_counts, vocab_size)
     match     = "Yes" if predicted == true_label else "No"
-    print(f"{match} true={true_label:8} predicted={predicted:8} review={text[:50]}...")
+    print(f"{match} , true = {true_label:8} , predicted = {predicted:8} : review = {text[:50]}...")
+
+print("\n Check the Data Sample for total positives and negatives")
+print("======================")
+pos_in_test = sum(1 for text, label in test_data if label == "positive")
+neg_in_test = sum(1 for text, label in test_data if label == "negative")
+print(f"count positive in test = {pos_in_test}")
+print(f"count negative in test = {neg_in_test}")
