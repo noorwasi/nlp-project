@@ -27,7 +27,7 @@ class EvaluationMetrics:
     # Implement Accuracy
     print("\n")
     print("Accuracy \n ========")
-    def accuracy(y_true, y_pred):
+    def accuracy(y_true, y_pred) -> float:
         accuracy_value = sum(1 for t, p in zip(y_true, y_pred) if t == p)
         return accuracy_value / len(y_true)
     accuracy_result = accuracy(y_true, y_pred)
@@ -38,7 +38,7 @@ class EvaluationMetrics:
     # Implement Precision
     print("\n")
     print("Precision \n ========")
-    def precision(y_true, y_pred):
+    def precision(y_true, y_pred) -> float:
         TP = sum(1 for t, p in zip(y_true, y_pred) if t == 1 and p == 1)
         FP = sum(1 for t, p in zip(y_true, y_pred) if t == 0 and p == 1)
         
