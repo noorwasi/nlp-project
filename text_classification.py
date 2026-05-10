@@ -12,7 +12,6 @@ for text, label in dataset:
     print(f"{label} = {tokenize(text)}")
 
 print("\n Compute Word Probabilities \n ===========================")
-
 total_words  = {"spam": 0, "normal": 0}
 class_counts = {"spam": 0, "normal": 0}
 word_counts  = {"spam": {}, "normal": {}}

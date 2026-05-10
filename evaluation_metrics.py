@@ -3,7 +3,6 @@ import random
 
 # Load IMDb Data
 # =========================================
-
 dataset = []
 with open("imdb_movie_reviews.csv", newline='', encoding='utf-8') as f:
     reader = csv.DictReader(f)
@@ -22,7 +21,6 @@ train_data = dataset[:400]
 test_data  = dataset[400:]
 
 
-
 print("IMDb Reviews Classifier")
 print("========")
 print(f"Training samples = {len(train_data)}")
@@ -30,15 +28,11 @@ print(f"Test samples     = {len(test_data)}")
 
 # Tokenizer
 # =========================================
-
 def tokenize(text):
     return text.lower().split()
 
-
-
 # Train — fill word counts
 # =========================================
-
 class_counts = {"positive": 0, "negative": 0}
 total_words  = {"positive": 0, "negative": 0}
 word_counts  = {"positive": {}, "negative": {}}
@@ -60,7 +54,6 @@ print(f"total_words  = {total_words}")
 
 # Vocab Size
 # =========================================
-
 vocab_size = len(set(
     token
     for text, label in train_data
@@ -71,7 +64,6 @@ print(f"vocab_size   = {vocab_size}")
 
 # Score Function
 # =========================================
-
 def score(text, label):
     tokens     = tokenize(text)
     total_docs = sum(class_counts.values())
@@ -86,7 +78,6 @@ def score(text, label):
 
 # Predict Function
 # =========================================
-
 def predict(text):
     pos_score = score(text, "positive")
     neg_score = score(text, "negative")

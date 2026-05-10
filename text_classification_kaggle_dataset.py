@@ -4,8 +4,7 @@ import random
 
 # STEP 1 - Load a small sample of the data
 # =========================================
-
-def load_imdb(filepath, sample_size=50, seed=42):
+def load_imdb(filepath, sample_size=500, seed=67):
     data = []
     with open(filepath, newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
@@ -48,7 +47,6 @@ def train(dataset):
 
 # STEP 4 - Score and Predict
 # =========================================
-
 def score(text, label, class_counts, total_words, word_counts, vocab_size):
     tokens = tokenize(text)
 
@@ -65,7 +63,6 @@ def score(text, label, class_counts, total_words, word_counts, vocab_size):
 
     return p_class * p_words
 
-
 def predict(text, class_counts, total_words, word_counts, vocab_size):
     pos_score = score(text, "positive", class_counts, total_words, word_counts, vocab_size)
     neg_score = score(text, "negative", class_counts, total_words, word_counts, vocab_size)
@@ -74,9 +71,8 @@ def predict(text, class_counts, total_words, word_counts, vocab_size):
     else:
         return "negative"
 
-# STEP 5 - Evaluator (your code from before)
+# STEP 5 - Evaluator
 # =========================================
-
 class Evaluator:
 
     def confusion_matrix(self, y_true, y_pred):
@@ -120,7 +116,7 @@ class Evaluator:
             return 0.0
         return (2 * p * r) / (p + r)
 
-# STEP 6 - Run Everything
+# STEP 6 - Running The Code
 # =========================================
 
 # --- load data ---
